@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service ;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -53,6 +54,6 @@ public class ActivityService {
         List<Activity>activityList = activityRepository.findByUserId(userId);
         // Activity --> Activity response coonvert ;
         // Collect in list and return
-        return activityList.stream().map(this::mapToResponse).toList();
+        return activityList.stream().map(this::mapToResponse).collect(Collectors.toList());
     }
 }
