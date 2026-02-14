@@ -1,21 +1,28 @@
 package com.project.fitness.controller;
 
+import com.project.fitness.dto.RecommendationRequest;
 import com.project.fitness.model.Recommendation;
 import com.project.fitness.services.RecommendationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @AllArgsConstructor
 
 @RestController
 @RequestMapping("/api/recommendation")
 public class RecommendationController {
-    private RecommendationService recommendationService
+    private RecommendationService recommendationService ;
 @PostMapping("/generate")
-    public ResponseEntity<Recommendation> generateRecommendation(){
-     Recommendation recommendation = recommendationService.generateRecommendation();
+    public ResponseEntity<Recommendation> generateRecommendation(@RequestBody RecommendationRequest request){
+     Recommendation recommendation = recommendationService.generateRecommendation(request);
      return ResponseEntity.ok(recommendation);
+}
+@GetMapping("/user/{userId}")
+    public  ResponseEntity<List<Recommendation>> getUserRecommendation(@PathVariable String userId){
+    List<Recommendation> recommendationList =  recommendationService.getUserRecommendation(userId);
+    return ResponseEntity.ok(recommendationList);
 }
 }
