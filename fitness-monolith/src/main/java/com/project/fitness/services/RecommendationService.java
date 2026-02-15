@@ -31,7 +31,11 @@ public class RecommendationService {
       return  recommendationRepository.save(recommendation);
     }
 
-    public List<Recommendation> getUserRecommendation(String request) {
-        return  "";
+    public List<Recommendation> getUserRecommendation(String userId) {
+        return  recommendationRepository.findByUserId(userId);
+    }
+
+    public List<Recommendation> getActivityRecommendation(String activityId) {
+        return  recommendationRepository.findByActivityId(activityId);
     }
 }
