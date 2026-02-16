@@ -10,12 +10,10 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,13 +23,12 @@ public class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-
     @Enumerated(EnumType.STRING)
     private ActivityType type;
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "json")
     private Map<String, Object> additionalMetrics;
-    // to store  json values in db ;
+    // to store  JSON values in db ;
     private Integer duration;
     private Integer caloriesBurned;
     private LocalDateTime startTime;
