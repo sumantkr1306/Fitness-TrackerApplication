@@ -26,7 +26,6 @@ public class Recommendation {
     @Column(length = 2000)
     public String recommendation ;
     public String type ;
-
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "json")
     private List<String> improvements ;
@@ -40,8 +39,6 @@ public class Recommendation {
   private LocalDateTime createdAt;
     @UpdateTimestamp
   private LocalDateTime updatedAt ;
-
-
    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id" ,nullable = false ,foreignKey = @ForeignKey(name = "fk_recommendation_user"))
    @JsonIgnore
@@ -50,8 +47,4 @@ public class Recommendation {
     @JoinColumn(name = "activity_id" ,nullable = false ,foreignKey = @ForeignKey(name = "fk_recommendation_activity"))
     @JsonIgnore
     private  Activity activity ;
-
-
-
-
 }

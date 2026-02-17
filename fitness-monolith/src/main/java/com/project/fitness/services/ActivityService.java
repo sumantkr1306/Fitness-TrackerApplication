@@ -49,10 +49,9 @@ public class ActivityService {
         return response;
     }
 
-
     public List<ActivityResponse> getUserActivities(String userId) {
         List<Activity>activityList = activityRepository.findByUserId(userId);
-        // Activity --> Activity response coonvert ;
+        // Activity --> Activity response convert ;
         // Collect in list and return
         return activityList.stream().map(this::mapToResponse).collect(Collectors.toList());
     }

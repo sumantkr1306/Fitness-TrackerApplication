@@ -15,12 +15,14 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class RecommendationService {
-    private RecommendationRepository recommendationRepository;
-    private ActivityRepository activityRepository;
-    private UserRepository userRepository;
+    private final RecommendationRepository recommendationRepository;
+    private final ActivityRepository activityRepository;
+    private final UserRepository userRepository;
     public Recommendation generateRecommendation(RecommendationRequest request) {
-      User user  = userRepository.findById(request.getUserId()).orElseThrow(()->new RuntimeException("Activity not found !" + request.getUserId()));
-      Activity activity = activityRepository.findById(request.getActivityId()).orElseThrow(()-> new RuntimeException("Activity not found!" + request.getActivityId()));
+      User user  = userRepository.findById(request.getUserId())
+              .orElseThrow(()->new RuntimeException("Activity not found !" + request.getUserId()));
+      Activity activity = activityRepository.findById(request.getActivityId())
+              .orElseThrow(()-> new RuntimeException("Activity not found!" + request.getActivityId()));
       Recommendation recommendation = Recommendation.builder()
               .safety(request.getSafety())
               .improvements(request.getImprovements())
