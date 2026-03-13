@@ -2,6 +2,7 @@ package com.project.fitness.controller;
 import com.project.fitness.dto.ActivityRequest;
 import com.project.fitness.dto.ActivityResponse;
 import com.project.fitness.services.ActivityService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
