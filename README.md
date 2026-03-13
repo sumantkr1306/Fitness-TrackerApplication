@@ -1,70 +1,147 @@
-# Fitness Management Backend API
+# 🏋️ Fitness Management Backend API
 
-A **Spring Boot-based RESTful backend application** for managing fitness-related data.
-The project demonstrates secure API development using **JWT authentication, role-based access control (RBAC), and modern backend practices**.
+![Java](https://img.shields.io/badge/Java-25-orange)
+![Spring Boot](https://img.shields.io/badge/SpringBoot-3.x-brightgreen)
+![Database](https://img.shields.io/badge/Database-MySQL%20%7C%20PostgreSQL-blue)
+![Security](https://img.shields.io/badge/Security-JWT%20Auth-red)
+![Docker](https://img.shields.io/badge/Container-Docker-blue)
+![Build](https://img.shields.io/badge/Build-Maven-yellow)
+
+A **production-ready Spring Boot REST API** for managing fitness data.
+This backend demonstrates modern Java backend practices including **JWT authentication, RBAC authorization, DTO architecture, Swagger documentation, and Docker containerization**.
 
 ---
 
-## 🚀 Features
+# 🌐 Live Deployment
+
+The application is deployed on **Render Cloud Platform**.
+
+**Live API:**
+https://fitness-mono-aqv5.onrender.com
+
+**Swagger Documentation:**
+https://fitness-mono-aqv5.onrender.com/swagger-ui/index.html
+
+---
+
+# 🚀 Features
 
 * RESTful API built with **Spring Boot**
 * **JWT Authentication & Authorization**
 * **Role-Based Access Control (RBAC)**
-* **DTO & Builder Pattern implementation**
-* **Spring Security integration**
+* **DTO Pattern & Builder Pattern**
+* **Spring Security Integration**
 * **Password encryption using BCrypt**
-* **Database integration with JPA/Hibernate**
 * **Input validation**
-* **API documentation using Swagger**
+* **Swagger API documentation**
 * **Docker containerization**
-* **Cloud deployment ready**
-* Clean code using **Lombok**
+* **Environment-based configuration**
+* Clean layered architecture
+* Production-ready deployment
 
 ---
 
-## 🛠 Tech Stack
+# 🛠 Tech Stack
 
-* **Java**
-* **Spring Boot**
-* **Spring Security**
-* **JWT**
-* **JPA / Hibernate**
-* **MySQL / PostgreSQL**
-* **Docker**
-* **Swagger (OpenAPI)**
-* **Lombok**
-* **Maven**
+| Technology         | Purpose                        |
+| ------------------ | ------------------------------ |
+| Java 25            | Programming language           |
+| Spring Boot        | Backend framework              |
+| Spring Security    | Authentication & authorization |
+| JWT                | Secure token authentication    |
+| JPA / Hibernate    | ORM for database access        |
+| MySQL / PostgreSQL | Relational database            |
+| Swagger / OpenAPI  | API documentation              |
+| Docker             | Containerization               |
+| Maven              | Build automation               |
+| Lombok             | Reduce boilerplate code        |
 
 ---
 
-## 📂 Project Structure
+# 🏗 System Architecture
+
+```
+Client (Postman / Frontend)
+        │
+        ▼
++----------------------+
+|     Controller       |
+|  Handles API calls   |
++----------------------+
+        │
+        ▼
++----------------------+
+|       Service        |
+|   Business Logic     |
++----------------------+
+        │
+        ▼
++----------------------+
+|     Repository       |
+|  JPA / Hibernate ORM |
++----------------------+
+        │
+        ▼
++----------------------+
+|       Database       |
+| MySQL / PostgreSQL   |
++----------------------+
+```
+
+---
+
+# 🔐 Security Architecture
+
+```
+Client Request
+      │
+      ▼
+Spring Security Filter
+      │
+      ▼
+JWT Authentication
+      │
+      ▼
+Role-Based Access Control
+      │
+      ▼
+Protected API Endpoints
+```
+
+---
+
+# 📂 Project Structure
 
 ```
 fitness-monolith
 │
 ├── src
 │   ├── main
-│   │   ├── java
-│   │   │   └── com.project.fitness
-│   │   │       ├── controller
-│   │   │       ├── service
-│   │   │       ├── repository
-│   │   │       ├── security
-│   │   │       └── dto
-│   │   └── resources
-│   │       └── application.properties
+│   │   ├── java/com.project.fitness
+│   │   │
+│   │   ├── config        → Application configuration
+│   │   ├── controller    → REST API endpoints
+│   │   ├── dto           → Data Transfer Objects
+│   │   ├── exceptions    → Global exception handling
+│   │   ├── model         → Entity classes
+│   │   ├── repository    → Database repositories
+│   │   ├── security      → JWT & Spring Security configuration
+│   │   ├── services      → Business logic
+│   │   └── FitnessMonolithApplication
+│   │
+│   └── resources
+│       └── application.properties
 │
 ├── Dockerfile
-├── docker-compose.yml
 ├── pom.xml
 └── README.md
 ```
 
 ---
 
-## ⚙️ Environment Variables
+# ⚙ Environment Variables
 
-The application uses environment variables for database configuration:
+Database credentials are configured using environment variables.
 
 ```
 DB_URL=your_database_url
@@ -82,38 +159,50 @@ spring.datasource.password=${DB_PWD}
 
 ---
 
-## ▶️ Running the Application
+# ▶ Running the Application Locally
 
-### 1. Clone the Repository
+### 1. Clone Repository
 
 ```
-git clone https://github.com/sumantkr/fitness-monolith.git
+git clone https://github.com/sumantkr1306/Fitness-TrackerApplication.git
 cd fitness-monolith
 ```
 
-### 2. Run using Maven
+### 2. Set Environment Variables
+
+PowerShell example:
 
 ```
-./mvnw spring-boot:run
+$env:DB_URL="jdbc:postgresql://your-db-host/database"
+$env:DB_USER="username"
+$env:DB_PWD="password"
 ```
 
-For Windows:
+### 3. Run Application
+
+Windows:
 
 ```
 .\mvnw.cmd spring-boot:run
 ```
 
+Linux / Mac:
+
+```
+./mvnw spring-boot:run
+```
+
 ---
 
-## 🐳 Running with Docker
+# 🐳 Running with Docker
 
-Build the Docker image:
+### Build Docker Image
 
 ```
 docker build -t fitness-monolith .
 ```
 
-Run the container:
+### Run Container
 
 ```
 docker run -p 8080:8080 fitness-monolith
@@ -121,34 +210,63 @@ docker run -p 8080:8080 fitness-monolith
 
 ---
 
-## 📄 API Documentation
-
-Swagger UI:
+# 📡 Example API Endpoint
 
 ```
-http://localhost:8080/swagger-ui.html
+POST /apiauth/register
+```
+
+Example Request
+
+```
+POST https://fitness-mono-aqv5.onrender.com/api/auth/register
+```
+
+Example Response
+
+```json
+{
+    "id": "57166265-7e96-4aa8-bbe7-5f005c22d947",
+    "email": "myfatherdmin@company.com",
+    "password": "$2a$10$DIEr6FkD9x3ip/s0HuNxqeLgmfETcyNCfjYcW.sFrLnR6YQGjlXkW",
+    "firstName": "ourAdmin",
+    "lastName": "System",
+    "createdAt": "2026-03-13T16:19:10.512565",
+    "updatedAt": "2026-03-13T16:19:10.512654"
+}
 ```
 
 ---
 
-## 🔐 Security Features
 
-* JWT-based authentication
-* Secure password hashing with BCrypt
-* Role-based authorization
-* Protected API endpoints
+## 📷 Swagger API Documentation
 
----
+The API is documented using Swagger and can be accessed interactively.
 
-## 👨‍💻 Author
+**Live Swagger URL**
+
+https://fitness-mono-aqv5.onrender.com/swagger-ui.html
+
+### Swagger Overview
+
+![Swagger Overview](docs/swagger-overview.png)
+
+### API Endpoints
+
+![Swagger Endpoints](docs/swagger-endpoints.png)
+
+### Request / Response Schemas
+
+![Swagger Schemas](docs/swagger-schemas.png)
+# 👨‍💻 Author
 
 **Sumant Kumar**
 
-GitHub:
+GitHub
 https://github.com/sumantkr1306
 
 ---
 
-## 📜 License
+# 📜 License
 
-This project is for **learning and educational purposes**.
+This project is developed for **learning and educational purposes**
