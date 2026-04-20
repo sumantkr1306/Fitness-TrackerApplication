@@ -45,7 +45,7 @@ https://fitness-mono-aqv5.onrender.com/swagger-ui/index.html
 
 | Technology         | Purpose                        |
 | ------------------ | ------------------------------ |
-| Java 25            | Programming language           |
+| Java 21            | Programming language           |
 | Spring Boot        | Backend framework              |
 | Spring Security    | Authentication & authorization |
 | JWT                | Secure token authentication    |
